@@ -1,25 +1,31 @@
 
 // find all buttons
 
-let one = document.querySelector('#one');
-let two = document.querySelector('#two');
-let three = document.querySelector('#three');
+let buttons = document.querySelectorAll('button');
 
-let addButton = document.querySelector('#add');
+let screen = document.querySelector('#screen');
 
-let equalButton = document.querySelector('#equal');
+// let one = document.querySelector('#one');
+// let two = document.querySelector('#two');
+// let three = document.querySelector('#three');
+
+// let addButton = document.querySelector('#add');
+
+// let equalButton = document.querySelector('#equal');
 
 
 
 // let the user input numbers
 
-let firstNum = ;
-let secondNum = 3;
-let operator = '-';
+let firstNum;
+let secondNum;
+let operator;
 
-
-operate(firstNum, secondNum, operator);
-
+buttons.forEach(button => {
+    button.addEventListener('click', event => {
+        screen.textContent = screen.textContent + ' ' + button.textContent;
+    })
+})
 
 
 
