@@ -33,17 +33,20 @@ section {
 }
 
 #buttons {
-    width: 90%;
+    margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 20px;
     
 }
 
 button {
     margin: 5px;
     min-width: 70px;
-    min-height: 70px; 
+    min-height: 70px;
+}
+
+#clear {
+    background-color: lightpink;
 }

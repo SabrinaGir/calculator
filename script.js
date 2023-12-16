@@ -7,6 +7,7 @@ let buttons = document.querySelectorAll('button');
 let screen = document.querySelector('#screen');
 
 let equalButton = document.querySelector('#equal');
+let clearButton = document.querySelector('#clear');
 
 
 
@@ -28,6 +29,14 @@ equalButton.addEventListener('click', event => {
     operate(firstNum, secondNum, operator);
 })
 
+clearButton.addEventListener('click', event => {
+    screen.textContent = '0';
+    firstNum = ''
+    secondNum = ''
+    operator = ''
+    answer = ''
+})
+
 
 
 
@@ -43,7 +52,7 @@ function updateScreen(input) {
     if (input.className == 'num' && operator == '') {
         firstNum = firstNum + input.textContent;
     }
-    else if (input.className == 'op' && firstNum != '') {
+    else if (input.className == 'op' && firstNum != '' && operator == '') {
         operator = input.textContent;
     }
     else if (input.className == 'num' && operator != '') {
@@ -93,7 +102,13 @@ function multiply(a,b) {
 }
 
 function divide(a,b) {
-    answer = a / b
+    if (a/0) {
+        screen.textContent = 'No.'
+    } 
+    else {
+        answer = a / b
     screen.textContent = answer
+    }
+    
 }
 
