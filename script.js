@@ -18,6 +18,8 @@ let secondNum = ''
 let operator = ''
 let answer = ''
 
+let text = '';
+
 
 buttons.forEach(button => {
     button.addEventListener('click', event => {
@@ -41,25 +43,34 @@ clearButton.addEventListener('click', event => {
 
 
 function updateScreen(input) {
-    if (answer != '') {
-        firstNum = ''
-        secondNum = ''
-        operator = ''
-        answer = ''
-    }
+    // if (answer != '') {
+    //     firstNum = ''
+    //     secondNum = ''
+    //     operator = ''
+    //     answer = ''
+    // }
 
 
-    if (input.className == 'num' && operator == '') {
-        firstNum = firstNum + input.textContent;
-    }
-    else if (input.className == 'op' && firstNum != '' && operator == '') {
-        operator = input.textContent;
-    }
-    else if (input.className == 'num' && operator != '') {
-        secondNum = secondNum + input.textContent;
+    // if (input.className == 'num' && operator == '') {
+    //     firstNum = firstNum + input.textContent;
+    // }
+    // else if (input.className == 'op' && firstNum != '' && operator == '') {
+    //     operator = input.textContent;
+    // }
+    // else if (input.className == 'num' && operator != '') {
+    //     secondNum = secondNum + input.textContent;
+    // }
+
+    if (input.className == 'num') {
+        text = text + input.textContent;
     }
 
-    return firstNum + ' ' + operator + ' ' + secondNum;
+    if (input.className == 'op' && text != '') {
+        firstNum = text;
+        text = text + ' ' + input.textContent
+    }
+
+    return text;
 }
 
 // called after all three variables are assigned and performs operation according to the operator chosen
@@ -102,7 +113,7 @@ function multiply(a,b) {
 }
 
 function divide(a,b) {
-    if (a/0) {
+    if (b == 0) {
         screen.textContent = 'No.'
     } 
     else {
