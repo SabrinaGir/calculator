@@ -17,7 +17,6 @@ let firstNum = ''
 let secondNum = ''
 let operator = ''
 let answer = ''
-
 let text = '';
 
 
@@ -29,6 +28,10 @@ buttons.forEach(button => {
 
 equalButton.addEventListener('click', event => {
     operate(firstNum, secondNum, operator);
+
+    firstNum = answer;
+    operator = '';
+    secondNum = '';
 })
 
 clearButton.addEventListener('click', event => {
@@ -37,38 +40,30 @@ clearButton.addEventListener('click', event => {
     secondNum = ''
     operator = ''
     answer = ''
+    text = '';
 })
 
 
 
 
 function updateScreen(input) {
-    // if (answer != '') {
-    //     firstNum = ''
-    //     secondNum = ''
-    //     operator = ''
-    //     answer = ''
-    // }
-
-
-    // if (input.className == 'num' && operator == '') {
-    //     firstNum = firstNum + input.textContent;
-    // }
-    // else if (input.className == 'op' && firstNum != '' && operator == '') {
-    //     operator = input.textContent;
-    // }
-    // else if (input.className == 'num' && operator != '') {
-    //     secondNum = secondNum + input.textContent;
-    // }
-
-    if (input.className == 'num') {
-        text = text + input.textContent;
+    if (input.className == 'num' && operator == '') {
+        firstNum += input.textContent;
+    }
+    else if (input.className == 'op' && firstNum != '' && operator == '') {
+        operator = input.textContent;
+    }
+    else if (input.className == 'num' && operator != '') {
+        if (secondNum === '0') {
+            secondNum == input.textContent;
+        }
+        else {
+            secondNum += input.textContent;
+        }
     }
 
-    if (input.className == 'op' && text != '') {
-        firstNum = text;
-        text = text + ' ' + input.textContent
-    }
+    // Build the expression to display on the screen
+    text = firstNum + operator + secondNum;
 
     return text;
 }
@@ -91,6 +86,7 @@ function operate(a,b, operator) {
         else if (operator == '/') {
             divide(a,b)
         }
+       
     }
 
 }
@@ -118,8 +114,11 @@ function divide(a,b) {
     } 
     else {
         answer = a / b
-    screen.textContent = answer
+        screen.textContent = answer
     }
+
+    a = answer;
     
 }
+
 
